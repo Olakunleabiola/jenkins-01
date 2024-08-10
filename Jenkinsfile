@@ -9,7 +9,7 @@ pipeline {
                 checkout scmGit(
                     branches: [[name: '*/main']], 
                     extensions: [], 
-                    userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Olakunleabiola/jenkins-01.git']]
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Olakunleabiola/jenkins-01.git']])
                 )
             }
         }
