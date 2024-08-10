@@ -32,5 +32,13 @@ pipeline {
   -Dsonar.login=sqp_05e2a16f75885c94d1efa6fd2630a02f12a46f9a"
       }
     }
-  }
+stage('5-deploy-to-tomcat') {
+    steps {
+        sshagent(['tomcat']) {
+          sh """
+         scp -o StrictHostKeyChecking=no ${WAR_FILE_PATH} ubuntu@34.209.53.251:/opt/tomcat/apache-tomcat-9.0.93/webapps
+          """
+            }
+        }
+    }
 }
