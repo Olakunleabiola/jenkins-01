@@ -6,8 +6,7 @@ pipeline {
   stages{
     stage('1-git-clone'){
       steps{
-          checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Olakunleabiola/jenkins-01.git']])
-      }
+        checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'etech', url: 'https://github.com/etechDevops/etech-mavenApp.git']])
       }
     }
     stage('2-cleanws'){
@@ -33,15 +32,5 @@ pipeline {
   -Dsonar.login=sqp_05e2a16f75885c94d1efa6fd2630a02f12a46f9a"
       }
     }
-stage('5-deploy-to-tomcat') {
-    steps {
-       withEnv(['WAR_FILE_PATH=~/workspace/maven-build2/MavenEnterpriseApp-web/target/MavenEnterpriseApplication.war']) {
-        sshagent(['tomcat']) {
-          sh """
-         scp -o StrictHostKeyChecking=no ~/workspace/maven-build2/MavenEnterpriseApp-web/target/MavenEnterpriseApplication.war
- ubuntu@34.209.53.251:/opt/tomcat/apache-tomcat-9.0.93/webapps
-          """           
-            }
-        }
-    }
+  }
 }
