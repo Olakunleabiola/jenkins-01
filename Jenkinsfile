@@ -36,7 +36,7 @@ stage('5-deploy-to-tomcat') {
     steps {
         sshagent(['tomcat']) {
           sh """
-         scp -o StrictHostKeyChecking=no ~/workspace/maven-build2/MavenEnterpriseApp-web/target
+         scp -o StrictHostKeyChecking=no ~/workspace/maven-build2/MavenEnterpriseApp-web/target/MavenEnterpriseApplication.war
  ubuntu@34.209.53.251:/opt/tomcat/apache-tomcat-9.0.93/webapps
           """           
             }
